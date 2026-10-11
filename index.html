@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生活費トラッカー｜定期支払いの管理と支払い忘れ防止（無料・登録不要）</title>
+<meta name="description" content="電気・ガス・水道・家賃・国民年金・国民健康保険・サブスクなど、毎月の定期的な支払いをひとつの画面でまとめて管理。支払日が近づくと色で警告し、支払い忘れを防ぎます。年間の固定費もグラフで見える化。登録不要・すべてブラウザ内で完結します。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.reveriel.com/life-cost-tracker/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="生活費トラッカー｜定期支払いの管理と支払い忘れ防止">
+<meta property="og:description" content="公共料金・家賃・年金・保険・サブスクなど定期的な支払いをまとめて管理。期限前にお知らせし、固定費をグラフで見える化する無料ツール。">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://www.reveriel.com/life-cost-tracker/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f46e5'/%3E%3Cpath d='M6 13h20M6 13a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3H6v-3z' fill='%23ffffff'/%3E%3Cpath d='M9 16v7M16 16v7M23 16v7' stroke='%23c7d2fe' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M5 25h22' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6fc01bf3ac5e457ba1bd16b91e5b653e"}'></script><!-- End Cloudflare Web Analytics -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "生活費トラッカー",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.reveriel.com/life-cost-tracker/",
+      "description": "電気・ガス・水道・家賃・国民年金・国民健康保険・サブスクリプションなど、定期的に発生する支払いをひとつの画面で管理し、支払い忘れを防ぐブラウザ完結型の無料ツール。",
+      "inLanguage": "ja",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "featureList": [
+        "公共料金・家賃・年金・保険・サブスクなど定期的な支払いを一括管理",
+        "支払日が7日以内なら黄色、当日は赤、期限超過はグレーで表示する支払い忘れ防止",
+        "今月・来月・今後12か月の固定費を自動集計",
+        "カテゴリ別の割合をドーナツグラフで表示",
+        "「支払い済み」で次回支払日を周期に応じて自動で繰り上げ（月末日は自動調整）",
+        "データは localStorage にのみ保存、JSON の書き出し・読み込みでバックアップ",
+        "Google カレンダー等に読み込める .ics 形式の書き出し",
+        "中文／日本語の画面切り替え"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "データはサーバーに送信されますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。入力した内容はすべてお使いのブラウザ内（localStorage）にのみ保存され、サーバーへ送信されることはありません。会員登録も不要です。そのぶん、ブラウザのデータを削除すると記録も消えるため、JSON の書き出し機能で定期的にバックアップすることをおすすめします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支払い忘れを防ぐには？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "登録した支払いの次回支払日が7日以内になるとカードが黄色、当日は赤、期限を過ぎるとグレーで表示されます。さらに「.ics を書き出す」ボタンでカレンダーファイルを作成し、Google カレンダーや Apple カレンダーに読み込めば、スマートフォン側でも前日に通知を受け取れます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "家計簿アプリとの違いは？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本ツールは収入・日々の支出・資産を扱いません。電気代・ガス代・家賃・国民年金・保険・サブスクリプションなど「定期的に発生する支払い」だけに絞ることで、毎月いくら固定的に出ていくのか、次にいつ何を払うのかを一目で把握できるようにしています。家計簿をつける手間をかけずに固定費だけを整理したい場面に向いています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "「支払い済み」にすると何が起こりますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "次回の支払日が周期に応じて自動で繰り上がります。毎月は＋1か月、隔月は＋2か月、四半期は＋3か月、半年は＋6か月、毎年は＋1年です。月末の日付は自動で調整されるため、1月31日の毎月払いを済ませると次回は2月28日（うるう年は2月29日）になります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "金額は全角で入力しても大丈夫ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "問題ありません。全角数字で入力しても自動的に半角数字へ変換され、3桁ごとのカンマ区切り（例：85,000）で表示されます。カンマや「円」「¥」などの記号は自動で取り除かれます。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header no-print">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="currentColor"/>
+        <path d="M6 13h20v2H6z" fill="#fff"/>
+        <path d="M7 11h18l1 2H6z" fill="#c7d2fe"/>
+        <path d="M9.5 16v7M16 16v7M22.5 16v7" stroke="#c7d2fe" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M5 25h22" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-text">
+        <strong data-i18n="brandName">生活费追踪器</strong>
+        <span data-i18n="tagline">定期缴费管理・防止漏缴</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-ghost" id="langBtn" data-i18n-aria="ariaLang">日本語</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================== 仪表盘 ===================== -->
+  <section class="dash" aria-labelledby="dashTitle">
+    <h1 class="dash-title" id="dashTitle" data-i18n="dashTitle">每月固定支出，一目了然</h1>
+    <p class="dash-lead" data-i18n="dashLead">把电费、燃气、房租、年金、保险、订阅服务等定期缴费集中到一处，到期前自动提醒。</p>
+
+    <div class="kpi-row">
+      <div class="stat-tile" id="tileThisMonth">
+        <span class="stat-label" data-i18n="statThisMonth">本月应缴</span>
+        <strong class="stat-value" id="statThisMonth">¥0</strong>
+        <span class="stat-sub" data-i18n="statThisMonthSub">含已过期未缴</span>
+      </div>
+      <div class="stat-tile" id="tileNextMonth">
+        <span class="stat-label" data-i18n="statNextMonth">下月应缴</span>
+        <strong class="stat-value" id="statNextMonth">¥0</strong>
+        <span class="stat-sub" data-i18n="statNextMonthSub">按缴费周期推算</span>
+      </div>
+      <div class="stat-tile stat-tile-accent" id="tileYear">
+        <span class="stat-label" data-i18n="statYear">全年固定支出</span>
+        <strong class="stat-value" id="statYear">¥0</strong>
+        <span class="stat-sub" data-i18n="statYearSub">未来 12 个月合计</span>
+      </div>
+    </div>
+
+    <p class="privacy-note">
+      <svg viewBox="0 0 16 16" aria-hidden="true" class="ic"><path d="M8 1.5 3 3.5v4c0 3 2.1 5.6 5 6.5 2.9-.9 5-3.5 5-6.5v-4L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <span data-i18n="privacyNote">数据仅保存在本浏览器（localStorage），不会发送到任何服务器。建议定期导出 JSON 备份。</span>
+    </p>
+  </section>
+
+  <div class="layout">
+
+    <!-- ===================== 左：列表 ===================== -->
+    <section class="pane list-pane" aria-labelledby="listTitle">
+      <div class="pane-head">
+        <div>
+          <h2 id="listTitle" data-i18n="listTitle">缴费项</h2>
+          <p class="hint" id="listMeta" data-i18n="sortNote">按下次缴费日排序</p>
+        </div>
+        <div class="pane-head-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="addBtn" data-i18n="btnAdd">添加缴费项</button>
+          <button type="button" class="btn btn-outline btn-sm" id="tplBtn" data-i18n="btnTemplates">从模板添加</button>
+        </div>
+      </div>
+
+      <!-- 模板面板 -->
+      <div class="tpl-panel" id="tplPanel" hidden>
+        <p class="hint" data-i18n="presetNote">点击即可添加，金额与日期之后可随时修改。</p>
+        <div class="tpl-grid" id="tplGrid"></div>
+      </div>
+
+      <!-- 表单 -->
+      <form class="item-form card" id="itemForm" autocomplete="off" novalidate hidden>
+        <h3 class="form-title" id="formTitle" data-i18n="formTitleAdd">添加缴费项</h3>
+
+        <div class="field">
+          <label for="fName" data-i18n="lblName">名称</label>
+          <input type="text" id="fName" name="name" maxlength="60" aria-describedby="errName">
+          <p class="error" id="errName" role="alert" hidden data-i18n="errName">请输入名称</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="fCategory" data-i18n="lblCategory">分类</label>
+            <select id="fCategory" name="category">
+              <option value="utility" data-i18n="cat.utility">公共料金</option>
+              <option value="housing" data-i18n="cat.housing">住居</option>
+              <option value="insurance" data-i18n="cat.insurance">保険・年金</option>
+              <option value="telecom" data-i18n="cat.telecom">通信</option>
+              <option value="subscription" data-i18n="cat.subscription">サブスク</option>
+              <option value="other" data-i18n="cat.other">その他</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fCycle" data-i18n="lblCycle">缴费周期</label>
+            <select id="fCycle" name="cycle">
+              <option value="monthly" data-i18n="cycle.monthly">毎月</option>
+              <option value="bimonthly" data-i18n="cycle.bimonthly">隔月</option>
+              <option value="quarterly" data-i18n="cycle.quarterly">四半期</option>
+              <option value="semiannual" data-i18n="cycle.semiannual">半年</option>
+              <option value="yearly" data-i18n="cycle.yearly">毎年</option>
+              <option value="once" data-i18n="cycle.once">単発</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="fAmount" data-i18n="lblAmount">金额（日元）</label>
+            <input type="text" id="fAmount" name="amount" inputmode="numeric" spellcheck="false"
+                   data-i18n-ph="phAmount" placeholder="例：6,000" aria-describedby="helpAmount errAmount">
+            <p class="help" data-i18n="helpAmount">全角数字会自动转换，自动加千分位。</p>
+            <p class="error" id="errAmount" role="alert" hidden data-i18n="errAmount">请输入金额</p>
+          </div>
+
+          <div class="field">
+            <label for="fDate" data-i18n="lblNextDate">下次缴费日</label>
+            <input type="date" id="fDate" name="nextDate" aria-describedby="errDate">
+            <p class="error" id="errDate" role="alert" hidden data-i18n="errDate">请选择日期</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fNote" data-i18n="lblNote">备注（可选）</label>
+          <input type="text" id="fNote" name="note" maxlength="80" data-i18n-ph="phNote" placeholder="例：口座振替">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="saveBtn" data-i18n="btnSave">保存</button>
+          <button type="button" class="btn btn-ghost" id="cancelBtn" data-i18n="btnCancel">取消</button>
+        </div>
+      </form>
+
+      <div class="item-list" id="itemList"></div>
+
+      <p class="empty-state" id="emptyState" hidden data-i18n="emptyState">还没有缴费项。点击「添加缴费项」，或从模板一键添加。</p>
+
+      <div class="list-foot">
+        <button type="button" class="btn btn-ghost btn-sm" id="clearSampleBtn" data-i18n="btnClearSample">清空示例数据</button>
+      </div>
+    </section>
+
+    <!-- ===================== 右：图表 + 数据管理 ===================== -->
+    <aside class="pane side-pane">
+
+      <section class="card chart-card" aria-labelledby="chartTitle">
+        <div class="card-head">
+          <h2 id="chartTitle" data-i18n="chartTitle">分类占比</h2>
+          <div class="seg" role="group" aria-labelledby="chartTitle">
+            <button type="button" class="seg-btn is-active" id="segMonthly" data-i18n="chartMonthly">每月</button>
+            <button type="button" class="seg-btn" id="segYearly" data-i18n="chartYearly">全年</button>
+          </div>
+        </div>
+
+        <div class="chart-body">
+          <div class="chart-canvas-wrap">
+            <canvas id="chart" width="240" height="240" role="img" aria-describedby="chartLegend"></canvas>
+            <p class="chart-empty" id="chartEmpty" hidden data-i18n="chartEmpty">还没有可统计的数据。</p>
+            <div class="chart-tip" id="chartTip" hidden></div>
+          </div>
+          <ul class="legend" id="chartLegend"></ul>
+        </div>
+        <p class="chart-foot" id="chartFoot"></p>
+      </section>
+
+      <section class="card data-card" aria-labelledby="dataTitle">
+        <div class="card-head">
+          <h2 id="dataTitle" data-i18n="dataTitle">数据管理</h2>
+        </div>
+        <p class="hint" data-i18n="helpExport">数据只存在本浏览器里。清除浏览器数据会丢失记录，建议定期导出备份。</p>
+        <div class="data-actions">
+          <button type="button" class="btn btn-outline btn-sm" id="exportJsonBtn" data-i18n="btnExportJson">导出 JSON</button>
+          <button type="button" class="btn btn-outline btn-sm" id="importJsonBtn" data-i18n="btnImportJson">导入 JSON</button>
+          <button type="button" class="btn btn-outline btn-sm" id="exportIcsBtn" data-i18n="btnExportIcs">导出 .ics 日历</button>
+        </div>
+        <p class="help" data-i18n="icsHelp">把 .ics 导入 Google／Apple 日历，就能在手机上收到到期提醒。</p>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </section>
+
+    </aside>
+  </div>
+
+  <!-- ===================== 说明 / FAQ ===================== -->
+  <section class="seo no-print" lang="ja" aria-label="ツールについて">
+    <h2>生活費トラッカーとは</h2>
+    <p>
+      毎月の電気代・ガス代・水道代・家賃・携帯電話料金・インターネット回線・国民年金・国民健康保険・火災保険・クレジットカードの年会費、
+      そして各種サブスクリプション。日本の暮らしには、<strong>定期的に発生する支払い</strong>が驚くほど多くあります。
+      支払いの手段も、口座振替・クレジットカード・コンビニ払込票・納付書とばらばらで、「今月は何をいくら払うのか」「次はいつ期限なのか」を
+      頭の中だけで把握するのは簡単ではありません。
+    </p>
+    <p>
+      この<strong>生活費トラッカー</strong>は、そうした定期的な支払いをひとつの画面にまとめて管理するための無料ツールです。
+      よく使う支払い項目はテンプレートからワンクリックで追加でき、金額・周期・次回の支払日を登録しておけば、
+      支払日が近づいたものが色で強調されます。<strong>支払い忘れを防ぐ</strong>ことと、<strong>毎月・年間でいくら固定費が出ていくのかを見える化する</strong>こと。
+      この2つだけに絞っているのが特徴です。
+    </p>
+
+    <h3>できること</h3>
+    <ul class="seo-list">
+      <li><strong>定期的な支払いをまとめて管理</strong> — 公共料金／住居／保険・年金／通信／サブスク／その他のカテゴリで整理します。</li>
+      <li><strong>支払い忘れ防止</strong> — 次回の支払日が7日以内なら黄色、当日なら赤、期限を過ぎたものはグレーで表示され、一覧は支払日の近い順に並びます。</li>
+      <li><strong>固定費の見える化</strong> — 今月・来月・今後12か月の合計を自動集計し、カテゴリ別の割合をドーナツグラフで表示します。</li>
+      <li><strong>支払い済みで自動繰り上げ</strong> — 「支払い済み」を押すと、毎月＋1か月・隔月＋2か月・四半期＋3か月・半年＋6か月・毎年＋1年、次回の支払日が自動で進みます。</li>
+      <li><strong>バックアップとカレンダー連携</strong> — 全データを JSON で書き出し・読み込みできるほか、今後1年分の支払いを .ics として書き出し、Google カレンダーや Apple カレンダーに読み込めます。</li>
+    </ul>
+
+    <h3>よくある質問</h3>
+    <dl class="faq">
+      <dt>データはサーバーに送信されますか？</dt>
+      <dd>いいえ。入力した内容はすべてお使いのブラウザ内（localStorage）にのみ保存され、サーバーへ送信されることはありません。会員登録も不要です。そのぶん、ブラウザのデータを削除すると記録も消えるため、JSON の書き出し機能で定期的にバックアップすることをおすすめします。</dd>
+
+      <dt>支払い忘れを防ぐには？</dt>
+      <dd>登録した支払いの次回支払日が7日以内になるとカードが黄色、当日は赤、期限を過ぎるとグレーで表示されます。さらに「.ics を書き出す」ボタンでカレンダーファイルを作成し、Google カレンダーや Apple カレンダーに読み込めば、スマートフォン側でも前日に通知を受け取れます。</dd>
+
+      <dt>家計簿アプリとの違いは？</dt>
+      <dd>本ツールは収入・日々の支出・資産を扱いません。電気代・ガス代・家賃・国民年金・保険・サブスクリプションなど「定期的に発生する支払い」だけに絞ることで、毎月いくら固定的に出ていくのか、次にいつ何を払うのかを一目で把握できるようにしています。家計簿をつける手間をかけずに固定費だけを整理したい場面に向いています。</dd>
+
+      <dt>「支払い済み」にすると何が起こりますか？</dt>
+      <dd>次回の支払日が周期に応じて自動で繰り上がります。毎月は＋1か月、隔月は＋2か月、四半期は＋3か月、半年は＋6か月、毎年は＋1年です。月末の日付は自動で調整されるため、1月31日の毎月払いを済ませると次回は2月28日（うるう年は2月29日）になります。</dd>
+
+      <dt>金額は全角で入力しても大丈夫ですか？</dt>
+      <dd>問題ありません。全角数字で入力しても自動的に半角数字へ変換され、3桁ごとのカンマ区切り（例：85,000）で表示されます。カンマや「円」「¥」などの記号は自動で取り除かれます。</dd>
+    </dl>
+
+    <p class="disclaimer">
+      ※ 本ツールは生活費の管理を補助するためのものであり、支払金額・支払期日・制度上の金額を保証するものではありません。
+      テンプレートに設定された金額はあくまで目安です。実際の請求額・納付額は、各契約先・自治体・公的機関の案内をご確認ください。
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer no-print">
+  <div class="wrap">
+    <p data-i18n="footerNote">生活费追踪器 — 在浏览器中管理日本定期缴费、防止漏缴的免费工具</p>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfHGUfgAlViT3TFiVtJi_EpJ4ioUpd9oGyaJ7rehEV-gBH_PA/viewform?usp=pp_url&amp;entry.1745177199=%E7%94%9F%E6%B4%BB%E8%B2%BB%E3%83%88%E3%83%A9%E3%83%83%E3%82%AB%E3%83%BC" target="_blank" rel="noopener">ご意見・フィードバック</a></p>
+    <p class="foot-related">関連ツール：<a href="https://www.reveriel.com/japan-invoice-pdf/">適格請求書</a> ・ <a href="https://www.reveriel.com/ryoshusho-pdf/">領収書</a> ・ <a href="https://www.reveriel.com/mitsumori-pdf/">見積書</a> ・ <a href="https://www.reveriel.com/iryo-shomei-pdf/">医療証明書類</a></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="script.js"></script>
+<!-- フィードバックFAB（右下固定・常時表示） -->
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfHGUfgAlViT3TFiVtJi_EpJ4ioUpd9oGyaJ7rehEV-gBH_PA/viewform?usp=pp_url&amp;entry.1745177199=%E7%94%9F%E6%B4%BB%E8%B2%BB%E3%83%88%E3%83%A9%E3%83%83%E3%82%AB%E3%83%BC" target="_blank" rel="noopener" class="feedback-fab" aria-label="ご意見・フィードバックを送る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span>ご意見・フィードバック</span>
+</a>
+</body>
+</html>
