@@ -497,6 +497,7 @@ a { color: var(--c-accent); }
 .seo h3 { font-size: 15px; font-weight: 700; margin: 22px 0 8px; }
 .seo p { font-size: 13.5px; color: var(--c-text-muted); }
 .seo strong { color: var(--c-text); }
+.seo a { color: var(--c-accent); }
 
 .seo-list { margin: 0 0 4px; padding-left: 1.15em; font-size: 13.5px; color: var(--c-text-muted); }
 .seo-list li { margin-bottom: 6px; }
@@ -566,7 +567,7 @@ a { color: var(--c-accent); }
 /* ---------------- 印刷 ---------------- */
 
 @media print {
-  .no-print, .site-header, .site-footer, .toast { display: none !important; }
+  .no-print, .site-header, .site-footer, .toast, .feedback-fab { display: none !important; }
   body { background: #fff; }
 }
 
